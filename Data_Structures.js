@@ -79,8 +79,6 @@ function aList(arrayParameter){
     list: null
   };
 
-  var listString = 'list';
-
   var finalAnswer = newList;
   for(var i = 1; i < arrayParameter.length; i++){
       list = {
@@ -96,3 +94,42 @@ function aList(arrayParameter){
 }
 
 console.log(aList([1, 2, 3]));
+
+function listToArray(listValue){
+  var arrayResult = [];
+
+  while(listValue.list){
+    arrayResult.push(listValue.value);
+    listValue = listValue.list;
+  }
+
+  arrayResult.push(listValue.value);
+
+  return arrayResult;
+}
+
+var answer = aList([1, 2, 3]);
+console.log(answer.value);
+
+console.log(listToArray(answer));
+
+function prepend(element, list){
+  return {
+    value: element,
+    list : list
+  }
+}
+
+console.log(prepend(5, answer));
+
+function nth(index, list){
+  if(index === 0 || list === null){
+    return list.value;
+  }else{
+   return nth(index - 1, list.list);
+  }
+}
+
+
+console.log(nth(2, prepend(5, answer)));
+
