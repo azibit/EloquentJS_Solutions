@@ -133,3 +133,30 @@ function nth(index, list){
 
 console.log(nth(2, prepend(5, answer)));
 
+function deepEqual(object1, object2){
+
+  if( typeof object1 == "object" &&  typeof object2 == "object"
+      && object1 != null && object2 != null){
+    if(Object.keys(object1).length != Object.keys(object2).length){
+      return false;
+    }else{
+      for(var props in object1){
+        if(object2.hasProperty(props)){
+          if(deepEquals(object1[props], object2[props])){
+            return false;
+          }
+        }else{
+          return false;
+        }
+      }
+      return true;
+    }
+  }else{
+    return object1 === object2;
+  }
+}
+
+console.log(deepEqual(answer, prepend(5, answer)));
+
+console.log(Object.keys("object"))
+
